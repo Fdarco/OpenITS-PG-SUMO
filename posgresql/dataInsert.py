@@ -4,11 +4,9 @@ import yaml
 import psycopg
 import getpass
 from rich import print
-from psycopg import sql
-
 
 if os.path.exists('databaseConfig.yaml'):
-    config = yaml.load(open('databaseConfig.yaml'), Loader=yaml.FullLoader)
+    config = yaml.load(open('../databaseConfig.yaml'), Loader=yaml.FullLoader)
 else:
     user = input('Username: ')
     password = getpass.getpass('Password: ')
@@ -17,7 +15,6 @@ else:
         'PASSWORD': password
     }
 
-print('[yellow]Connection to database: OPENITS.[/yellow]')
 conn = psycopg.connect(
     'dbname=OPENITS user={} password={}'.format(
         config['USER'], config['PASSWORD']
