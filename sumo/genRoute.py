@@ -6,7 +6,7 @@ from rich import print
 from collections import defaultdict
 from datetime import datetime, timedelta
 
-from roadConnection import Trip, baseConnection, RoadConnection
+from roadConnection import Trip, RoadConnection
 
 
 if os.path.exists('../databaseConfig.yaml'):
@@ -25,9 +25,9 @@ conn = psycopg.connect(
     )
 )
 
-start_time = datetime.strptime('2019-08-12 17:00:00', '%Y-%m-%d %H:%M:%S')
+# start_time = datetime.strptime('2019-08-12 17:00:00', '%Y-%m-%d %H:%M:%S')
 # start_time = datetime.strptime('2019-08-13 17:00:00', '%Y-%m-%d %H:%M:%S')
-# start_time = datetime.strptime('2019-08-14 17:00:00', '%Y-%m-%d %H:%M:%S')
+start_time = datetime.strptime('2019-08-14 17:00:00', '%Y-%m-%d %H:%M:%S')
 end_time = start_time + timedelta(hours=1)
 
 cur = conn.execute(
@@ -72,7 +72,7 @@ with open('./simulationFiles/xuancheng.rou.xml', 'w') as rf:
                 print(f'There is no valid path for trip {mv[i].trip_id}')
                 continue
             print('''    <vehicle id="{}" depart="{}" departLane="random">'''.format(
-                'veh_' + str(mv[i].trip_id), mk + i/tripNums,
+                'veh_' + str(mv[i].trip_id), mk*60 + i/tripNums*60,
             ), file=rf)
             print(f'''        <route edges="{edges}"/>''', file=rf)
             print('''    </vehicle>''', file=rf)

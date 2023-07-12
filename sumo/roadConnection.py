@@ -1,3 +1,4 @@
+from rich import print
 from dataclasses import dataclass
 import xml.etree.ElementTree as ET
 from collections import defaultdict
@@ -12,7 +13,7 @@ class baseConnection:
 @dataclass
 class Trip:
     trip_id: int
-    path: list
+    path: str
 
 
 class RoadConnection:

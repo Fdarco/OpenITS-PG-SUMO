@@ -1,3 +1,5 @@
 openits/
 
 databaseConfig.yaml
+
+__pycache__/
